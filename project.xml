@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<meta title="Github Actions Example" package="com.example.GithubActionsExample"/>
+	<app main="Main" file="GithubActionsExample"/>
+	<source path="src" />
+	<haxelib name="openfl"/>
+</project>
