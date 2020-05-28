@@ -1,0 +1,23 @@
+name: OpenFL air
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: haxeui/haxeui-core/.github/actions/haxe@master
+      with:
+        haxe-version: 4.0.5
+    - uses: joshtynjala/setup-adobe-air-action@master
+    - name: Set up Haxelib dependencies
+      run: |
+        haxelib install lime --quiet
+        haxelib install openfl --quiet
+        haxelib run lime config AIR_SDK ${{ env.AIR_HOME }}
+    - name: Build project
+      run: |
+        haxelib run openfl build air
