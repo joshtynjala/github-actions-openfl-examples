@@ -1,0 +1,22 @@
+name: OpenFL mac
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: haxeui/haxeui-core/.github/actions/haxe@master
+      with:
+        haxe-version: 4.0.5
+    - name: Set up Haxelib dependencies
+      run: |
+        haxelib install lime --quiet
+        haxelib install openfl --quiet
+        haxelib install hxcpp --quiet
+    - name: Build project
+      run: |
+        haxelib run openfl build mac
