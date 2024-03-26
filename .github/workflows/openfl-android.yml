@@ -7,9 +7,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      ANDROID_NDK_ROOT: /opt/android-ndk-r15c
-
     steps:
     - uses: actions/checkout@v3
     - uses: nttld/setup-ndk@v1
