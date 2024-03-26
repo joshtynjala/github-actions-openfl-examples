@@ -12,6 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - uses: nttld/setup-ndk@v1
+      with:
+        ndk-version: r15c
     - uses: krdlab/setup-haxe@v1
       with:
         haxe-version: 4.3.4
@@ -24,16 +27,10 @@ jobs:
       with:
         java-version: "8"
         distribution: "temurin"
-    - name: Set up Android NDK r15c
-      run: |
-        mkdir ${{ env.ANDROID_NDK_ROOT }}
-        wget -O android-ndk.zip --quiet https://dl.google.com/android/repository/android-ndk-r15c-linux-x86_64.zip
-        unzip -qq android-ndk.zip -d ${{ env.ANDROID_NDK_ROOT }}/..
-        rm android-ndk.zip
     - name: lime setup android
       run: |
         haxelib run lime config ANDROID_SDK ${{ env.ANDROID_HOME }}
-        haxelib run lime config ANDROID_NDK_ROOT ${{ env.ANDROID_NDK_ROOT }}
+        haxelib run lime config ANDROID_NDK_ROOT ${{ steps.setup-ndk.outputs.ndk-path }}
         haxelib run lime config JAVA_HOME ${{ env.JAVA_HOME }}
         haxelib run lime config ANDROID_SETUP true
         haxelib run lime config
