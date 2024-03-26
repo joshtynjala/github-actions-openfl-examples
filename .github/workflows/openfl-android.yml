@@ -26,15 +26,15 @@ jobs:
         distribution: "temurin"
     - name: Set up Android NDK r15c
       run: |
-        mkdir $ANDROID_NDK_ROOT
+        mkdir ${{ env.ANDROID_NDK_ROOT }}
         wget -O android-ndk.zip --quiet https://dl.google.com/android/repository/android-ndk-r15c-linux-x86_64.zip
-        unzip -qq android-ndk.zip -d $ANDROID_NDK_ROOT/..
+        unzip -qq android-ndk.zip -d ${{ env.ANDROID_NDK_ROOT }}/..
         rm android-ndk.zip
     - name: lime setup android
       run: |
-        haxelib run lime config ANDROID_SDK $ANDROID_HOME
-        haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_ROOT
-        haxelib run lime config JAVA_HOME $JAVA_HOME
+        haxelib run lime config ANDROID_SDK ${{ env.ANDROID_HOME }}
+        haxelib run lime config ANDROID_NDK_ROOT ${{ env.ANDROID_NDK_ROOT }}
+        haxelib run lime config JAVA_HOME ${{ env.JAVA_HOME }}
         haxelib run lime config ANDROID_SETUP true
         haxelib run lime config
     - name: Build project
