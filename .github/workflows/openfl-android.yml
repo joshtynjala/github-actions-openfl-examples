@@ -27,7 +27,7 @@ jobs:
         distribution: "temurin"
     - name: lime setup android
       run: |
-        haxelib run lime config ANDROID_SDK ${{ env.ANDROID_SDK_ROOT }}
+        haxelib run lime config ANDROID_SDK $ANDROID_SDK_ROOT
         haxelib run lime config ANDROID_NDK_ROOT ${{ steps.setup-ndk.outputs.ndk-path }}
         haxelib run lime config JAVA_HOME ${{ env.JAVA_HOME }}
         haxelib run lime config ANDROID_SETUP true
