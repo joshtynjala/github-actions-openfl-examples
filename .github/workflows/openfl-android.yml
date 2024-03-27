@@ -15,15 +15,15 @@ jobs:
         ndk-version: r15c
     - uses: krdlab/setup-haxe@v1
       with:
-        haxe-version: 4.3.4
+        haxe-version: 4.2.5
     - name: Set up Haxelib dependencies
       run: |
         haxelib install lime --quiet
         haxelib install openfl --quiet
-        haxelib install hxcpp --quiet
+        haxelib install hxcpp 4.2.1 --quiet
     - uses: actions/setup-java@v4
       with:
-        java-version: "8"
+        java-version: "11"
         distribution: "temurin"
     - name: lime setup android
       run: |
